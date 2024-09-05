@@ -12,14 +12,43 @@ export class UsuarioService {
 
   //aqui vamos a crear toda nuestra logica de programacion
   //DAO:
-  public createUsuarios(usuario:any){}
+  public createUsuarios(usuario:any):boolean{
+    if( this.getUsuario(usuario.rut)==undefined ){
+      this.usuarios.push(usuario);
+      return true;
+    }
+    return false;
+  }
 
-  public getUsuario(rut:string){}
+  //HOLA WAPOTE, KE ACE MI LOVE? MUAK
+  /*DESPUES DE IMAGINAR UNA VIDA JUNTOS DURANTE HORAS HE DECIDIDO ESCRIBIR ESTE MENSAJE,
+  I LUYU POR EVER MI HONNY, NUESTRA BODA SERA LEGENDARIA*/ 
 
-  public getUsuarios(){}
+  public getUsuario(rut:string){
+    return this.usuarios.find(elemento=> elemento.rut == rut);
+  }
 
-  public updateUsuarios(rut:string, nuevoUsuario:any){}
+  public getUsuarios():any[]{
+    return this.usuarios;
+  }
 
-  public deleteUsuarios(rut:string){}
+  public updateUsuarios(rut:string, nuevoUsuario:any){
+    for(let usu of this.usuarios){
+      if(usu.rut==rut){
+        usu = nuevoUsuario;
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public deleteUsuarios(rut:string){
+    const indice = this.usuarios.findIndex(elemento => elemento.rut == rut);
+    if(indice == -1){
+      return false;
+    }
+    this.usuarios.splice(indice,1);
+    return true;
+  }
 
 }
