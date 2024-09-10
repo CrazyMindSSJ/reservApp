@@ -36,4 +36,26 @@ export class AdministrarPage implements OnInit {
       alert("ERROR! No se pudo crear el usuario!")
     }
   }
+
+  buscar(rut_buscar:string){
+    this.persona.setValue( this.usuarioService.getUsuario(rut_buscar) );
+  }
+
+  modificar(){
+    var rut_buscar:string = this.persona.controls.rut.value || "";
+    if(this.usuarioService.updateUsuarios(rut_buscar , this.persona.value)){
+      alert("Usuario modificado con éxito")
+    }else{
+      alert("Error! usuario no modificado")
+    }
+  }
+
+  eliminar(rut_eliminar:string){
+    console.log(rut_eliminar);
+    if(this.usuarioService.deleteUsuarios(rut_eliminar)){
+      alert("Usuario eliminado con éxito!")
+    }else{
+      alert("ERROR! Usuario no eliminado")
+    }
+  }
 }

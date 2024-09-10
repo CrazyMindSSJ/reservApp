@@ -50,7 +50,7 @@ export class RegistroPage implements OnInit {
     //validaciones? llamar un DAO? conversión?
     console.log(this.persona.value);
     //alert("registrado!");
-    this.router.navigate(['/login']);
+    
   }
 
   /*public habilitar_boton():boolean{
